@@ -9,7 +9,6 @@ struct Process {
     int id;
     int arrivalTime;
     int burstTime;
-    int priority;
     int startTime;
     int completionTime;
     int turnaroundTime;
@@ -20,17 +19,17 @@ struct Process {
 // Function to display the results table
 void displayResults(vector<Process>& processes) {
     cout << "\n=== FCFS SCHEDULING RESULTS ===" << endl;
-    cout << string(100, '-') << endl;
+    cout << string(90, '-') << endl;
     cout << setw(5) << "PID" << setw(12) << "Arrival" << setw(10) << "Burst" 
-         << setw(10) << "Priority" << setw(12) << "Start" << setw(15) << "Completion" 
+         << setw(12) << "Start" << setw(15) << "Completion" 
          << setw(15) << "Turnaround" << setw(12) << "Waiting" << setw(12) << "Response" << endl;
-    cout << string(100, '-') << endl;
+    cout << string(90, '-') << endl;
 
     double avgTurnaround = 0, avgWaiting = 0, avgResponse = 0;
 
     for (auto& p : processes) {
         cout << setw(5) << p.id << setw(12) << p.arrivalTime << setw(10) << p.burstTime 
-             << setw(10) << p.priority << setw(12) << p.startTime << setw(15) << p.completionTime 
+             << setw(12) << p.startTime << setw(15) << p.completionTime 
              << setw(15) << p.turnaroundTime << setw(12) << p.waitingTime << setw(12) << p.responseTime << endl;
         
         avgTurnaround += p.turnaroundTime;
@@ -39,7 +38,7 @@ void displayResults(vector<Process>& processes) {
     }
 
     int n = processes.size();
-    cout << string(100, '-') << endl;
+    cout << string(90, '-') << endl;
     cout << "Average Turnaround Time: " << avgTurnaround / n << endl;
     cout << "Average Waiting Time: " << avgWaiting / n << endl;
     cout << "Average Response Time: " << avgResponse / n << endl;
@@ -114,8 +113,6 @@ vector<Process> getProcessData() {
         cin >> processes[i].arrivalTime;
         cout << "Enter Burst Time: ";
         cin >> processes[i].burstTime;
-        cout << "Enter Priority: ";
-        cin >> processes[i].priority;
     }
     return processes;
 }
