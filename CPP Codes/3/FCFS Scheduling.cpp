@@ -20,18 +20,18 @@ struct Process {
 void displayResults(vector<Process>& processes) {
     cout << "\n=== FCFS SCHEDULING RESULTS ===" << endl;
     cout << string(90, '-') << endl;
-    cout << setw(5) << "PID" << setw(12) << "Arrival" << setw(10) << "Burst"
-         << setw(12) << "Start" << setw(15) << "Completion"
+    cout << setw(5) << "PID" << setw(12) << "Arrival" << setw(10) << "Burst" 
+         << setw(12) << "Start" << setw(15) << "Completion" 
          << setw(15) << "Turnaround" << setw(12) << "Waiting" << setw(12) << "Response" << endl;
     cout << string(90, '-') << endl;
 
     double avgTurnaround = 0, avgWaiting = 0, avgResponse = 0;
 
     for (auto& p : processes) {
-        cout << setw(5) << p.id << setw(12) << p.arrivalTime << setw(10) << p.burstTime
-             << setw(12) << p.startTime << setw(15) << p.completionTime
+        cout << setw(5) << p.id << setw(12) << p.arrivalTime << setw(10) << p.burstTime 
+             << setw(12) << p.startTime << setw(15) << p.completionTime 
              << setw(15) << p.turnaroundTime << setw(12) << p.waitingTime << setw(12) << p.responseTime << endl;
-
+        
         avgTurnaround += p.turnaroundTime;
         avgWaiting += p.waitingTime;
         avgResponse += p.responseTime;
@@ -52,7 +52,7 @@ void displayGanttChart(const vector<pair<int, int>>& gantt, const vector<int>& t
         cout << setw(4) << times[i];
     }
     cout << endl;
-
+    
     cout << "Proc: ";
     for (size_t i = 0; i < gantt.size(); ++i) {
         if (gantt[i].first == -1) {
@@ -67,7 +67,7 @@ void displayGanttChart(const vector<pair<int, int>>& gantt, const vector<int>& t
 // FCFS Scheduling Algorithm
 void FCFS(vector<Process> processes) {
     cout << "\n=== FIRST COME FIRST SERVED (FCFS) SCHEDULING ===" << endl;
-
+    
     // Sort processes by arrival time
     sort(processes.begin(), processes.end(), [](const Process& a, const Process& b) {
         return a.arrivalTime < b.arrivalTime;
@@ -119,7 +119,7 @@ vector<Process> getProcessData() {
 
 int main() {
     cout << "=== FCFS CPU SCHEDULING ALGORITHM ===" << endl;
-
+    
     vector<Process> processes = getProcessData();
     FCFS(processes);
 
