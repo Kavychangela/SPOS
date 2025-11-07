@@ -10,7 +10,6 @@ struct Process {
     int id;
     int arrivalTime;
     int burstTime;
-    int priority;
     int remainingTime;
     int startTime;
     int completionTime;
@@ -22,26 +21,26 @@ struct Process {
 // Function to display the results table
 void displayResults(vector<Process>& processes) {
     cout << "\n=== SJF PREEMPTIVE SCHEDULING RESULTS ===" << endl;
-    cout << string(100, '-') << endl;
-    cout << setw(5) << "PID" << setw(12) << "Arrival" << setw(10) << "Burst" 
-         << setw(10) << "Priority" << setw(12) << "Start" << setw(15) << "Completion" 
+    cout << string(90, '-') << endl;
+    cout << setw(5) << "PID" << setw(12) << "Arrival" << setw(10) << "Burst"
+         << setw(12) << "Start" << setw(15) << "Completion"
          << setw(15) << "Turnaround" << setw(12) << "Waiting" << setw(12) << "Response" << endl;
-    cout << string(100, '-') << endl;
+    cout << string(90, '-') << endl;
 
     double avgTurnaround = 0, avgWaiting = 0, avgResponse = 0;
 
     for (auto& p : processes) {
-        cout << setw(5) << p.id << setw(12) << p.arrivalTime << setw(10) << p.burstTime 
-             << setw(10) << p.priority << setw(12) << p.startTime << setw(15) << p.completionTime 
+        cout << setw(5) << p.id << setw(12) << p.arrivalTime << setw(10) << p.burstTime
+             << setw(12) << p.startTime << setw(15) << p.completionTime
              << setw(15) << p.turnaroundTime << setw(12) << p.waitingTime << setw(12) << p.responseTime << endl;
-        
+
         avgTurnaround += p.turnaroundTime;
         avgWaiting += p.waitingTime;
         avgResponse += p.responseTime;
     }
 
     int n = processes.size();
-    cout << string(100, '-') << endl;
+    cout << string(90, '-') << endl;
     cout << "Average Turnaround Time: " << avgTurnaround / n << endl;
     cout << "Average Waiting Time: " << avgWaiting / n << endl;
     cout << "Average Response Time: " << avgResponse / n << endl;
@@ -55,7 +54,7 @@ void displayGanttChart(const vector<pair<int, int>>& gantt, const vector<int>& t
         cout << setw(4) << times[i];
     }
     cout << endl;
-    
+
     cout << "Proc: ";
     for (size_t i = 0; i < gantt.size(); ++i) {
         if (gantt[i].first == -1) {
@@ -70,7 +69,7 @@ void displayGanttChart(const vector<pair<int, int>>& gantt, const vector<int>& t
 // SJF Preemptive Scheduling Algorithm
 void SJF_Preemptive(vector<Process> processes) {
     cout << "\n=== SHORTEST JOB FIRST (PREEMPTIVE) SCHEDULING ===" << endl;
-    
+
     int n = processes.size();
     int currentTime = 0;
     int completed = 0;
@@ -91,7 +90,7 @@ void SJF_Preemptive(vector<Process> processes) {
 
         // Find process with minimum remaining time that has arrived
         for (int i = 0; i < n; i++) {
-            if (processes[i].arrivalTime <= currentTime && !isCompleted[i] && 
+            if (processes[i].arrivalTime <= currentTime && !isCompleted[i] &&
                 processes[i].remainingTime > 0 && processes[i].remainingTime < minBurst) {
                 minBurst = processes[i].remainingTime;
                 idx = i;
@@ -148,8 +147,6 @@ vector<Process> getProcessData() {
         cin >> processes[i].arrivalTime;
         cout << "Enter Burst Time: ";
         cin >> processes[i].burstTime;
-        cout << "Enter Priority: ";
-        cin >> processes[i].priority;
         processes[i].remainingTime = processes[i].burstTime;
     }
     return processes;
@@ -157,7 +154,7 @@ vector<Process> getProcessData() {
 
 int main() {
     cout << "=== SJF PREEMPTIVE CPU SCHEDULING ALGORITHM ===" << endl;
-    
+
     vector<Process> processes = getProcessData();
     SJF_Preemptive(processes);
 
