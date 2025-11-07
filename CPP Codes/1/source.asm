@@ -1,0 +1,8 @@
+COPY   START 1000
+FIRST  LDA   ALPHA
+       ADD   ONE
+       STA   BETA
+ALPHA  WORD  10
+ONE    WORD  1
+BETA   RESW  1
+       END   FIRST
